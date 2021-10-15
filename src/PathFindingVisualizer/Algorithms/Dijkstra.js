@@ -7,12 +7,13 @@ export function Dijkstra(grid, startNode, finishNode) {
   //will work as priorityQueue
   const unvisitedNodes = getAllNodes(grid);
 
-  while (unvisitedNodes.length>0) {
+  while (unvisitedNodes.length > 0) {
     sortByDistance(unvisitedNodes);
     const closestNode = unvisitedNodes.shift();
-
+    // If we encounter a wall, we skip it.
     if (!closestNode.isWall) {
-    
+      // If the closest node is at a distance of infinity,
+      // we must be trapped and should stop.
       if (closestNode.distance === Infinity) return visitedNodesInOrder;
       closestNode.isVisited = true;
       visitedNodesInOrder.push(closestNode);
@@ -23,9 +24,9 @@ export function Dijkstra(grid, startNode, finishNode) {
 }
 function updateUnvisitedNeighbors(node, grid) {
   const unvisitedNeighbors = getUnvisitedNeighbors(node, grid);
-  for (const node of unvisitedNeighbors) {
-    node.distance = node.distance + 1 + node.distanceToFinishNode;
-    node.previousNode = node;
+  for (const neighbor of unvisitedNeighbors) {
+    neighbor.distance = node.distance + 1;
+    neighbor.previousNode = node;
   }
 }
 
