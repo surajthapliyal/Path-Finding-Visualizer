@@ -17,8 +17,6 @@ export default class PathfindingVisualizer extends Component {
       mouseIsPressed: false,
       ROW_COUNT: 25,
       COLUMN_COUNT: 50,
-      MOBILE_ROW_COUNT: 10,
-      MOBILE_COLUMN_COUNT: 20,
       isRunning: false,
       isStartNode: false,
       isFinishNode: false,
